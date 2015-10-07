@@ -5,13 +5,24 @@ var url = require('url'),
 
 function wget(uri, callback) {
     console.log('Download file from %s', uri);
+    var parsedUri = url.parse(uri);
 
-    var options = url.parse(uri);
-    var paths = options.pathname.split('/');
+    console.log(uri)
+    var options = {
+        protocol: "http:",
+        host: "bf-proxy01.sth.basefarm.net",
+        port: 8888,
+        path: uri,
+        headers: {
+            Host: uri
+        }
+    };
+
+    var paths = parsedUri.pathname.split('/');
     var filename = paths[paths.length - 1];
     console.log(filename);
 
-    var http = require(uri.indexOf('https') === 0 ? 'https' : 'http');
+    var http = require('http');
 
     var req = http.get(options, function (res) {
         if (res.statusCode === 302 || res.statusCode === 301) {
