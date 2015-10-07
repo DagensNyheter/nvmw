@@ -166,7 +166,7 @@ mkdir "%NODE_HOME%"
 
 echo Start installing %NODE_TYPE%/%NODE_VERSION% (%ARCH%) to %NODE_HOME%
 
-PowerShell.exe -Command "$wc=New-Object System.Net.WebClient; $wc.DownloadFile('%NODE_EXE_URL%', '%NODE_EXE_FILE%')"
+PowerShell.exe -Command "$wc=New-Object System.Net.WebClient; $proxy=New-Object System.Net.WebProxy('%HTTPS_PROXY%'); $wc.Proxy= $proxy; $wc.DownloadFile('%NODE_EXE_URL%', '%NODE_EXE_FILE%')"
 
 if not exist "%NODE_EXE_FILE%" (
   echo Download %NODE_EXE_FILE% from %NODE_EXE_URL% failed
