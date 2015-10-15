@@ -394,7 +394,8 @@ if %NVMW_CURRENT_TYPE% == iojs (
   set "NODE_PATH=%NVMW_HOME%\%NVMW_CURRENT%%NVMW_CURRENT_ARCH_PADDING%\node_modules"
 )
 
-echo "##teamcity[setParameter name='env.PATH' value='%PATH%']"
+echo "##teamcity[setParameter name='env.NPM_HOME' value='%NODE_HOME%%NVMW_CURRENT%']"
+echo "##teamcity[setParameter name='env.NODE_HOME' value='%NODE_HOME%%NVMW_CURRENT%']"
 
 exit /b 0
 
